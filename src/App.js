@@ -55,20 +55,12 @@ togglePersonHandler = () =>{
     let persons = null;
     if(this.state.showPerson){
       persons = (
-      <div>
-      <Person 
-      name={this.state.person[0].name} 
-      age={this.state.person[0].age} />
-      <Person 
-      name={this.state.person[1].name} 
-      age={this.state.person[1].age}
-      click={this.switchNamesHandler.bind(this, "MADHURA!!!")}
-      changed={this.nameChangedHandler}>
-            It has many hobbies</Person>
-      <Person 
-      name={this.state.person[2].name} 
-      age={this.state.person[2].age} />
-      </div>
+        <div>
+          {
+            this.state.person.map(person => <Person name={person.name} age={person.age}/>)
+          }
+        </div>
+
       );
     }
     return (
