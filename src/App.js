@@ -5,27 +5,14 @@ import Person from './Person/Person'
 class App extends Component {
 state = {
   person : [
-    {name:"Madhura", age:99},
-    {name:"Modi", age:65},
-    {name:"Atal", age: 90}
+    {id:'ad23', name:"Madhura", age:99},
+    {id:'fd23', name:"Modi", age:65},
+    {id:'sd23', name:"Atal", age: 90}
   ],
   otherState : 'some state just for example',
   showPerson : false
 }
 
-switchNamesHandler = (newName) => {
-  //NEVER DO THIS   this.state.person[0].name = "Madhu";
-  //Correct way
-
-  this.setState({
-    person:[
-      {name: newName, age: 99},
-      {name:'Modi', age:54},
-      {name:"Atal", age: 90}
-    ]
-  })
-
-  }
 
 nameChangedHandler = (event) => {
 this.setState({
@@ -35,6 +22,13 @@ this.setState({
     {name: 'Atal', age: 90}
   ]
 })
+}
+
+deletePersonHandler = (personIndex) =>{
+  //const persons = this.state.person.slice();
+  const persons = [...this.state.person];
+  persons.splice(personIndex,1);
+  this.setState({person:persons})
 }
 
 togglePersonHandler = () =>{
@@ -56,8 +50,13 @@ togglePersonHandler = () =>{
     if(this.state.showPerson){
       persons = (
         <div>
-          {
-            this.state.person.map(person => <Person name={person.name} age={person.age}/>)
+          {this.state.person.map((person, index) => {
+            return <Person 
+            click={() => this.deletePersonHandler(index)}
+            name={person.name} 
+            age={person.age}
+            key={person.id}/>
+            })
           }
         </div>
 
