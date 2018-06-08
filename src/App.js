@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person'
+import Person from './Person/Person';
 
 class App extends Component {
 state = {
@@ -46,7 +46,7 @@ togglePersonHandler = () =>{
 
   render() {
     const style = {
-      backgroundColor: "#f5f5f5",
+      backgroundColor: "green",
       padding: '5px 10px',
       margin: '5px',
       border: '3px solid #ccc',
@@ -56,7 +56,7 @@ togglePersonHandler = () =>{
     let persons = null;
     if(this.state.showPerson){
       persons = (
-        <div>
+        <div> 
           {this.state.person.map((person, index) => {
             return <Person 
             click={() => this.deletePersonHandler(index)}
@@ -67,35 +67,28 @@ togglePersonHandler = () =>{
             })
           }
         </div>
-
       );
+
+      style.backgroundColor = 'red';
     }
+
+    let classes = [];
+    if(this.state.person.length <3)
+      classes.push('red');
+
+    if(this.state.person.length <2)
+      classes.push('bold');
+
     return (
       <div className="App">
         <h1>this is react app</h1>
+        <p className={classes.join(' ')}>i'll be working forever</p>
         <button 
         style={style}
         //onClick={() => this.switchNamesHandler('MADHU!!!')}>
         onClick={this.togglePersonHandler}>
         Switch Names</button> 
-        {/* {
-          this.state.showPerson === true ?
-        <div>
-        <Person 
-        name={this.state.person[0].name} 
-        age={this.state.person[0].age} />
-        <Person 
-        name={this.state.person[1].name} 
-        age={this.state.person[1].age}
-        click={this.switchNamesHandler.bind(this, "MADHURA!!!")}
-        changed={this.nameChangedHandler}>
-              It has many hobbies</Person>
-        <Person 
-        name={this.state.person[2].name} 
-        age={this.state.person[2].age} />
-        </div> : null
-      } */}
-
+ 
       {persons}
       </div>
     );
