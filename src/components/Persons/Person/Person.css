@@ -6,3 +6,10 @@
     text-align: center;
     width:60%;
 }
+
+@media (min-width: 500px){
+    .person{
+        width: 300px;
+        background-color: #999;
+    }
+}

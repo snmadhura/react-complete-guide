@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
 
 class App extends Component {
 state = {
@@ -45,16 +45,11 @@ togglePersonHandler = () =>{
 }
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      padding: '5px 10px',
-      margin: '5px',
-      border: '3px solid #ccc',
-      cursor: 'pointer'
-    }
 
     let persons = null;
+    let btnClass = '';
     if(this.state.showPerson){
+      
       persons = (
         <div> 
           {this.state.person.map((person, index) => {
@@ -68,8 +63,7 @@ togglePersonHandler = () =>{
           }
         </div>
       );
-
-      style.backgroundColor = 'red';
+      btnClass = classes.Red;
     }
 
     let assignedClasses = [];
@@ -84,8 +78,8 @@ togglePersonHandler = () =>{
         <h1>this is react app</h1>
         <p className={assignedClasses.join(' ')}>i'll be working forever</p>
         <button 
-        style={style}
         //onClick={() => this.switchNamesHandler('MADHU!!!')}>
+        className={btnClass}
         onClick={this.togglePersonHandler}>
         Switch Names</button> 
  
