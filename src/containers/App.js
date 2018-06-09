@@ -1,17 +1,42 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
-class App extends Component {
-state = {
-  person : [
-    {id:'ad23', name:"Madhura", age:99},
-    {id:'fd23', name:"Modi", age:65},
-    {id:'sd23', name:"Atal", age: 90}
-  ],
-  otherState : 'some state just for example',
-  showPerson : false
+class App extends PureComponent {
+  constructor(props){
+    super(props);
+    this.state = {
+      person : [
+        {id:'ad23', name:"Madhura", age:99},
+        {id:'fd23', name:"Modi", age:65},
+        {id:'sd23', name:"Atal", age: 90}
+      ],
+      otherState : 'some state just for example',
+      showPerson : false
+    }
+    console.log('[Appjs] inside constructor');
+  }
+
+  componentWillMount(){
+    console.log('[Appjs] inside comp. will mount');
+  }
+
+  componentDidMount(){
+    console.log('[Appjs] inside comp. did mount');
+  }
+
+  // shouldComponentUpdate(nextProps, nextState){
+  //   console.log('[UPDATE Appjs] inside comp should update props', nextProps, nextState);
+  //   return true;
+//  }
+
+componentWillUpdate(nextProps, nextState){
+    console.log('[UPDATE Appjs] inside comp will update props', nextProps, nextState);
+}
+
+componentDidUpdate(){
+    console.log('[UPDATE Appjs] inside comp DID update props');
 }
 
 
@@ -47,6 +72,8 @@ togglePersonHandler = () =>{
 
   render() {
 
+    console.log('[App.js] inside renders')
+
     let persons = null;
    
     if(this.state.showPerson){      
@@ -61,6 +88,7 @@ togglePersonHandler = () =>{
 
     return (
       <div className={classes.App}>
+      <button onClick={() =>{this.setState({showPerson: true})}}>Show Person</button>
         <Cockpit showPerson={this.state.showPerson}
         persons={this.state.person}
         clicked={this.togglePersonHandler}
