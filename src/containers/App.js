@@ -63,7 +63,7 @@ togglePersonHandler = () =>{
       <div className={classes.App}>
         <Cockpit showPerson={this.state.showPerson}
         persons={this.state.person}
-        clicked={this.state.togglePersonHandler}
+        clicked={this.togglePersonHandler}
         
         />
  

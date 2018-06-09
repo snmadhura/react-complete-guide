@@ -10,10 +10,10 @@ const Cockpit = (props) => {
     if(props.showPerson){
         btnClass = classes.Red;
     }
-    if(props.person.length <3)
+    if(props.persons.length <3)
     assignedClasses.push(classes.red);
 
-    if(props.person.length <2)
+    if(props.persons.length <2)
     assignedClasses.push(classes.bold);
 
     return(
